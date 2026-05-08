@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 // Desafio Super Trunfo - Países
 // Tema 1 - Cadastro das cartas
@@ -13,6 +15,8 @@ int main() {
     char nome1[50], nome2[50];
     float media_pib1, media_densidade1, media_pib2, media_densidade2;
     int resultado_populacao, resultado_area, resultado_pib, resultado_pontos, resultado_media_pib, resultado_media_densidade, resultado_super;
+    int atributo;
+
     
     
     // carta 1
@@ -62,45 +66,69 @@ int main() {
     scanf(" %d", &pontos2);
 
     printf("\n");
+    
+    //Comparação dos atributos
+    printf("Escolha um atributo para comparar as cartas: \n");
+    printf("1 - População \n");
+    printf("2 - Área \n");
+    printf("3 - PIB \n");
+    printf("4 - Pontos Turisticos \n");
+    printf("5 - Densidade Populacional \n");
+    scanf("%d", &atributo);
 
-    // carta1
-    printf("Dados da primeira carta: \n");
-    printf("Estado: %s\n", estado1);
-    printf("Cidade: %s\n", nome1);
-    printf("Código: %s\n", codigo1);
-    printf("População: %lu\n", populacao1);
-    printf("Área: %.2f km²\n", area1);
-    printf("PIB: %.2f bilhões de reais\n", pib1);
-    printf("Pontos Turisticos: %d\n", pontos1);
     media_densidade1 = (populacao1 / area1);
-    printf("Densidade populacional: %.2f hab/km²\n", media_densidade1);
-    media_pib1 = (pib1 / populacao1) * 1000000000;
-    printf("PIB per capita: %.2f reais\n", media_pib1);
-    float super1 = (populacao1 + area1 + ( pib1 * 1000000000) + pontos1 +media_pib1 + ( 1.0 / media_densidade1));
-
-    // carta2
-    printf("\n");
-    printf("Dados da segunda carta: \n");
-    printf("Estado: %s\n", estado2);
-    printf("Cidade: %s\n", nome2);
-    printf("Código: %s\n", codigo2);
-    printf("População: %lu\n", populacao2);
-    printf("Área: %.2f km²\n", area2);
-    printf("PIB: %.2f bilhões de reais\n", pib2);
-    printf("Pontos Turisticos: %d\n", pontos2);
     media_densidade2 = (populacao2 / area2);
-    printf("Densidade populacional: %.2f hab/km²\n", media_densidade2);
-    media_pib2 = (pib2 / populacao2) * 1000000000;
-    printf("PIB per capita: %.2f reais\n", media_pib2);
-    float super2 = (populacao2 + area2 + ( pib2 * 1000000000) + pontos2 +media_pib2 + ( 1.0 / media_densidade2));
-
-    // comparação das cartas
-    printf("\nComparação das cartas:\n");
-    if (resultado_populacao = ( populacao1 > populacao2 )) {
-        printf("População: Carta 1 venceu\n");
-    } else {
-        printf("População: Carta 2 venceu\n");
+    switch(atributo) {
+        case 1: 
+            if (populacao1 > populacao2) {
+                printf("População: %s venceu\n", nome1);
+            } else if (populacao2 > populacao1) {
+                printf("População: %s venceu\n", nome2);
+            } else {
+                printf("População: Empate\n");
+            }
+        break;
+        case 2:
+                  if (area1 > area2) {
+                printf("Área: %s venceu\n", nome1);
+            } else if (area2 > area1) {
+                printf("Área: %s venceu\n", nome2);
+            } else {
+                printf("Área: Empate\n");
+            }
+        break;
+        case 3:
+                  if (pib1 > pib2) {
+                printf("PIB: %s venceu\n", nome1);
+            } else if (pib2 > pib1) {
+                printf("PIB: %s venceu\n", nome2);
+            } else {
+                printf("PIB: Empate\n");
+            }
+        break;
+        case 4:
+                  if (pontos1 > pontos2) {
+                printf("Pontos Turisticos: %s venceu\n", nome1);
+            } else if (pontos2 > pontos1) {
+                printf("Pontos Turisticos: %s venceu\n", nome2);
+            } else {
+                printf("Pontos Turisticos: Empate\n");
+            }
+        break;
+        case 5:
+                  if (media_densidade1 < media_densidade2) {
+                printf("Densidade Populacional: %s venceu\n", nome1);
+            } else if (media_densidade2 < media_densidade1) {
+                printf("Densidade Populacional: %s venceu\n", nome2);
+            } else {
+                printf("Densidade Populacional: Empate\n");
+            }
+        break;
+        default:
+            printf("Opção inválida. Por favor, escolha uma opção válida.\n");
+        break;
+          
     }
+    
 
-    printf("A cidade vencedora é: %d\n", resultado_populacao);
 }
